@@ -1,0 +1,10 @@
+{
+    "last_run": "2026-06-19 20:03:50",
+    "extract": "Success",
+    "transform": "Success",
+    "load": "Success",
+    "azure_upload": "Success",
+    "email_report": "Success",
+    "quality_score": 100.0,
+    "total_records": 649
+}

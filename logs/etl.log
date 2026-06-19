@@ -1,0 +1,559 @@
+2026-06-18 19:13:09 - run_etl - INFO - =========================================
+2026-06-18 19:13:09 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-18 19:13:09 - run_etl - INFO - =========================================
+2026-06-18 19:13:09 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-18 19:13:09 - extractor - WARNING - CSV file not found. Generating mock data at data/student_data.csv
+2026-06-18 19:13:09 - extractor - INFO - Generating 500 mock student records...
+2026-06-18 19:13:10 - extractor - INFO - Mock dataset generated successfully at data/student_data.csv
+2026-06-18 19:13:10 - extractor - INFO - Extracted 505 records from CSV.
+2026-06-18 19:13:10 - run_etl - INFO - Extraction step completed successfully.
+2026-06-18 19:13:10 - transformer - INFO - Starting data transformation pipeline...
+2026-06-18 19:13:10 - transformer - INFO - Converted column names to lowercase.
+2026-06-18 19:13:10 - transformer - INFO - Removed 5 duplicate records.
+2026-06-18 19:13:10 - transformer - INFO - Handled missing values. Logged fills: {'attendance': 6, 'mid1': 13}
+2026-06-18 19:13:10 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-18 19:13:10 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-18 19:13:10 - transformer - INFO - Transformation complete. Data Quality Score: 95.25%
+2026-06-18 19:13:10 - run_etl - INFO - Transformation step completed successfully.
+2026-06-18 19:13:10 - loader - INFO - Initializing database schema...
+2026-06-18 19:13:10 - loader - INFO - Database schema initialized successfully.
+2026-06-18 19:13:10 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-18 19:13:10 - loader - ERROR - Failed to load data to database: Execution failed on sql 'INSERT INTO students (studentid, name, department, gender, attendance, mid1, mid2, assignment, finalmarks, result, date, average_marks, grade) VALUES (:studentid, :name, :department, :gender, :attendance, :mid1, :mid2, :assignment, :finalmarks, :result, :date, :average_marks, :grade)': (sqlite3.OperationalError) table students has no column named studentid
+[SQL: INSERT INTO students (studentid, name, department, gender, attendance, mid1, mid2, assignment, finalmarks, result, date, average_marks, grade) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: [('STU1000', 'Rohan Mehta', 'CSE', 'Male', 55.67, 68.76, 68.34, 90.88, 78.06, 'Pass', '2025-04-18', 75.54, 'B'), ('STU1001', 'Tanvi Reddy', 'EEE', 'Female', 58.05, 69.51, 58.82, 72.05, 77.44, 'Pass', '2025-04-24', 71.59, 'B'), ('STU1002', 'Vijay Mishra', 'ECE', 'Male', 69.06, 88.72, 95.34, 79.14, 96.57, 'Pass', '2025-03-22', 93.01, 'A+'), ('STU1003', 'Karan Singh', 'CSE', 'Male', 76.15, 62.05, 67.75, 91.6, 77.39, 'Pass', '2025-04-23', 73.82, 'B'), ('STU1004', 'Preeti Mehta', 'CSE', 'Female', 60.33, 63.61, 78.83, 80.23, 72.34, 'Pass', '2025-02-20', 72.68, 'B'), ('STU1005', 'Rajesh Sharma', 'CIVIL', 'Male', 66.58, 86.88, 77.1, 87.8, 40.73, 'Pass', '2025-01-12', 61.94, 'C'), ('STU1006', 'Aishwarya Patel', 'CSE', 'Female', 65.65, 67.98, 73.27, 96.51, 70.2, 'Pass', '2025-01-03', 73.0, 'B'), ('STU1007', 'Kriti Nair', 'IT', 'Female', 58.68, 0.0, 76.27, 80.22, 67.52, 'Pass', '2025-04-17', 57.04, 'D')  ... displaying 10 of 500 total bound parameter sets ...  ('STU1498', 'Swati Sharma', 'ECE', 'Female', 67.37, 67.73, 71.01, 66.14, 65.22, 'Pass', '2025-02-12', 66.97, 'C'), ('STU1499', 'Sanjay Mishra', 'CIVIL', 'Male', 80.56, 59.57, 63.94, 82.81, 84.76, 'Pass', '2025-02-20', 75.36, 'B')]]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-18 19:13:10 - run_etl - ERROR - Loading step failed: Execution failed on sql 'INSERT INTO students (studentid, name, department, gender, attendance, mid1, mid2, assignment, finalmarks, result, date, average_marks, grade) VALUES (:studentid, :name, :department, :gender, :attendance, :mid1, :mid2, :assignment, :finalmarks, :result, :date, :average_marks, :grade)': (sqlite3.OperationalError) table students has no column named studentid
+[SQL: INSERT INTO students (studentid, name, department, gender, attendance, mid1, mid2, assignment, finalmarks, result, date, average_marks, grade) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: [('STU1000', 'Rohan Mehta', 'CSE', 'Male', 55.67, 68.76, 68.34, 90.88, 78.06, 'Pass', '2025-04-18', 75.54, 'B'), ('STU1001', 'Tanvi Reddy', 'EEE', 'Female', 58.05, 69.51, 58.82, 72.05, 77.44, 'Pass', '2025-04-24', 71.59, 'B'), ('STU1002', 'Vijay Mishra', 'ECE', 'Male', 69.06, 88.72, 95.34, 79.14, 96.57, 'Pass', '2025-03-22', 93.01, 'A+'), ('STU1003', 'Karan Singh', 'CSE', 'Male', 76.15, 62.05, 67.75, 91.6, 77.39, 'Pass', '2025-04-23', 73.82, 'B'), ('STU1004', 'Preeti Mehta', 'CSE', 'Female', 60.33, 63.61, 78.83, 80.23, 72.34, 'Pass', '2025-02-20', 72.68, 'B'), ('STU1005', 'Rajesh Sharma', 'CIVIL', 'Male', 66.58, 86.88, 77.1, 87.8, 40.73, 'Pass', '2025-01-12', 61.94, 'C'), ('STU1006', 'Aishwarya Patel', 'CSE', 'Female', 65.65, 67.98, 73.27, 96.51, 70.2, 'Pass', '2025-01-03', 73.0, 'B'), ('STU1007', 'Kriti Nair', 'IT', 'Female', 58.68, 0.0, 76.27, 80.22, 67.52, 'Pass', '2025-04-17', 57.04, 'D')  ... displaying 10 of 500 total bound parameter sets ...  ('STU1498', 'Swati Sharma', 'ECE', 'Female', 67.37, 67.73, 71.01, 66.14, 65.22, 'Pass', '2025-02-12', 66.97, 'C'), ('STU1499', 'Sanjay Mishra', 'CIVIL', 'Male', 80.56, 59.57, 63.94, 82.81, 84.76, 'Pass', '2025-02-20', 75.36, 'B')]]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-18 19:18:34 - run_etl - INFO - =========================================
+2026-06-18 19:18:34 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-18 19:18:34 - run_etl - INFO - =========================================
+2026-06-18 19:18:34 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-18 19:18:34 - extractor - INFO - Extracted 505 records from CSV.
+2026-06-18 19:18:34 - run_etl - INFO - Extraction step completed successfully.
+2026-06-18 19:18:34 - transformer - INFO - Starting data transformation pipeline...
+2026-06-18 19:18:34 - transformer - INFO - Converted column names to lowercase.
+2026-06-18 19:18:34 - transformer - INFO - Removed 5 duplicate records.
+2026-06-18 19:18:34 - transformer - INFO - Handled missing values. Logged fills: {'attendance': 6, 'mid1': 13}
+2026-06-18 19:18:34 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-18 19:18:34 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-18 19:18:34 - transformer - INFO - Transformation complete. Data Quality Score: 95.25%
+2026-06-18 19:18:34 - run_etl - INFO - Transformation step completed successfully.
+2026-06-18 19:18:34 - loader - INFO - Initializing database schema...
+2026-06-18 19:18:34 - loader - INFO - Database schema initialized successfully.
+2026-06-18 19:18:34 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-18 19:18:34 - loader - ERROR - Failed to load data to database: Execution failed on sql 'INSERT INTO students (studentid, name, department, gender, attendance, mid1, mid2, assignment, finalmarks, result, date, average_marks, grade) VALUES (:studentid, :name, :department, :gender, :attendance, :mid1, :mid2, :assignment, :finalmarks, :result, :date, :average_marks, :grade)': (sqlite3.OperationalError) table students has no column named studentid
+[SQL: INSERT INTO students (studentid, name, department, gender, attendance, mid1, mid2, assignment, finalmarks, result, date, average_marks, grade) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: [('STU1000', 'Rohan Mehta', 'CSE', 'Male', 55.67, 68.76, 68.34, 90.88, 78.06, 'Pass', '2025-04-18', 75.54, 'B'), ('STU1001', 'Tanvi Reddy', 'EEE', 'Female', 58.05, 69.51, 58.82, 72.05, 77.44, 'Pass', '2025-04-24', 71.59, 'B'), ('STU1002', 'Vijay Mishra', 'ECE', 'Male', 69.06, 88.72, 95.34, 79.14, 96.57, 'Pass', '2025-03-22', 93.01, 'A+'), ('STU1003', 'Karan Singh', 'CSE', 'Male', 76.15, 62.05, 67.75, 91.6, 77.39, 'Pass', '2025-04-23', 73.82, 'B'), ('STU1004', 'Preeti Mehta', 'CSE', 'Female', 60.33, 63.61, 78.83, 80.23, 72.34, 'Pass', '2025-02-20', 72.68, 'B'), ('STU1005', 'Rajesh Sharma', 'CIVIL', 'Male', 66.58, 86.88, 77.1, 87.8, 40.73, 'Pass', '2025-01-12', 61.94, 'C'), ('STU1006', 'Aishwarya Patel', 'CSE', 'Female', 65.65, 67.98, 73.27, 96.51, 70.2, 'Pass', '2025-01-03', 73.0, 'B'), ('STU1007', 'Kriti Nair', 'IT', 'Female', 58.68, 0.0, 76.27, 80.22, 67.52, 'Pass', '2025-04-17', 57.04, 'D')  ... displaying 10 of 500 total bound parameter sets ...  ('STU1498', 'Swati Sharma', 'ECE', 'Female', 67.37, 67.73, 71.01, 66.14, 65.22, 'Pass', '2025-02-12', 66.97, 'C'), ('STU1499', 'Sanjay Mishra', 'CIVIL', 'Male', 80.56, 59.57, 63.94, 82.81, 84.76, 'Pass', '2025-02-20', 75.36, 'B')]]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-18 19:18:34 - run_etl - ERROR - Loading step failed: Execution failed on sql 'INSERT INTO students (studentid, name, department, gender, attendance, mid1, mid2, assignment, finalmarks, result, date, average_marks, grade) VALUES (:studentid, :name, :department, :gender, :attendance, :mid1, :mid2, :assignment, :finalmarks, :result, :date, :average_marks, :grade)': (sqlite3.OperationalError) table students has no column named studentid
+[SQL: INSERT INTO students (studentid, name, department, gender, attendance, mid1, mid2, assignment, finalmarks, result, date, average_marks, grade) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: [('STU1000', 'Rohan Mehta', 'CSE', 'Male', 55.67, 68.76, 68.34, 90.88, 78.06, 'Pass', '2025-04-18', 75.54, 'B'), ('STU1001', 'Tanvi Reddy', 'EEE', 'Female', 58.05, 69.51, 58.82, 72.05, 77.44, 'Pass', '2025-04-24', 71.59, 'B'), ('STU1002', 'Vijay Mishra', 'ECE', 'Male', 69.06, 88.72, 95.34, 79.14, 96.57, 'Pass', '2025-03-22', 93.01, 'A+'), ('STU1003', 'Karan Singh', 'CSE', 'Male', 76.15, 62.05, 67.75, 91.6, 77.39, 'Pass', '2025-04-23', 73.82, 'B'), ('STU1004', 'Preeti Mehta', 'CSE', 'Female', 60.33, 63.61, 78.83, 80.23, 72.34, 'Pass', '2025-02-20', 72.68, 'B'), ('STU1005', 'Rajesh Sharma', 'CIVIL', 'Male', 66.58, 86.88, 77.1, 87.8, 40.73, 'Pass', '2025-01-12', 61.94, 'C'), ('STU1006', 'Aishwarya Patel', 'CSE', 'Female', 65.65, 67.98, 73.27, 96.51, 70.2, 'Pass', '2025-01-03', 73.0, 'B'), ('STU1007', 'Kriti Nair', 'IT', 'Female', 58.68, 0.0, 76.27, 80.22, 67.52, 'Pass', '2025-04-17', 57.04, 'D')  ... displaying 10 of 500 total bound parameter sets ...  ('STU1498', 'Swati Sharma', 'ECE', 'Female', 67.37, 67.73, 71.01, 66.14, 65.22, 'Pass', '2025-02-12', 66.97, 'C'), ('STU1499', 'Sanjay Mishra', 'CIVIL', 'Male', 80.56, 59.57, 63.94, 82.81, 84.76, 'Pass', '2025-02-20', 75.36, 'B')]]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-18 19:23:14 - run_etl - INFO - =========================================
+2026-06-18 19:23:14 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-18 19:23:14 - run_etl - INFO - =========================================
+2026-06-18 19:23:14 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-18 19:23:15 - extractor - INFO - Extracted 505 records from CSV.
+2026-06-18 19:23:15 - run_etl - INFO - Extraction step completed successfully.
+2026-06-18 19:23:15 - transformer - INFO - Starting data transformation pipeline...
+2026-06-18 19:23:15 - transformer - INFO - Converted column names to lowercase.
+2026-06-18 19:23:15 - transformer - INFO - Removed 5 duplicate records.
+2026-06-18 19:23:15 - transformer - INFO - Handled missing values. Logged fills: {'attendance': 6, 'mid1': 13}
+2026-06-18 19:23:15 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-18 19:23:15 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-18 19:23:15 - transformer - INFO - Transformation complete. Data Quality Score: 95.25%
+2026-06-18 19:23:15 - run_etl - INFO - Transformation step completed successfully.
+2026-06-18 19:23:15 - loader - INFO - Initializing database schema...
+2026-06-18 19:23:15 - loader - INFO - Database schema initialized successfully.
+2026-06-18 19:23:15 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-18 19:23:15 - loader - INFO - Loaded 500 records into the database.
+2026-06-18 19:23:15 - loader - INFO - ETL run metadata logged in database.
+2026-06-18 19:23:15 - run_etl - INFO - Loading step completed successfully.
+2026-06-18 19:23:15 - run_etl - INFO - Generating report files...
+2026-06-18 19:23:15 - viz - INFO - Generating summary visualization at reports\summary.png...
+2026-06-18 19:23:17 - viz - INFO - Summary chart saved successfully at reports\summary.png
+2026-06-18 19:23:17 - run_etl - INFO - HTML Report compiled successfully.
+2026-06-18 19:23:17 - azure_loader - WARNING - Azure connection string missing. Defaulting to Mock Mode.
+2026-06-18 19:23:17 - azure_loader - INFO - [MOCK AZURE] Uploading 'data/student_data.csv' to container 'student-analytics' as 'raw_student_data.csv'...
+2026-06-18 19:23:17 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/raw_student_data.csv)
+2026-06-18 19:23:17 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\report.html' to container 'student-analytics' as 'reports/report.html'...
+2026-06-18 19:23:17 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/report.html)
+2026-06-18 19:23:17 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\summary.png' to container 'student-analytics' as 'reports/summary.png'...
+2026-06-18 19:23:17 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/summary.png)
+2026-06-18 19:23:17 - run_etl - INFO - Azure Upload step completed successfully.
+2026-06-18 19:23:17 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-18 19:23:17 - emailer - INFO - Preparing email notification...
+2026-06-18 19:23:17 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-18 19:23:17 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-18 19:23:17 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-18 19:23:17 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-18 19:23:17 - run_etl - INFO - Email Report step completed successfully.
+2026-06-18 19:23:17 - run_etl - INFO - =========================================
+2026-06-18 19:23:17 - run_etl - INFO - ETL Pipeline Execution Completed Status:
+2026-06-18 19:23:17 - run_etl - INFO - Extract: Success
+2026-06-18 19:23:17 - run_etl - INFO - Transform: Success
+2026-06-18 19:23:17 - run_etl - INFO - Load: Success
+2026-06-18 19:23:17 - run_etl - INFO - Azure Upload: Success
+2026-06-18 19:23:17 - run_etl - INFO - Email Report: Success
+2026-06-18 19:23:17 - run_etl - INFO - =========================================
+2026-06-18 22:07:25 - run_etl - INFO - =========================================
+2026-06-18 22:07:25 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-18 22:07:25 - run_etl - INFO - =========================================
+2026-06-18 22:07:25 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-18 22:07:25 - extractor - INFO - Extracted 505 records from CSV.
+2026-06-18 22:07:25 - run_etl - INFO - Extraction step completed successfully.
+2026-06-18 22:07:25 - transformer - INFO - Starting data transformation pipeline...
+2026-06-18 22:07:25 - transformer - INFO - Converted column names to lowercase.
+2026-06-18 22:07:25 - transformer - INFO - Removed 5 duplicate records.
+2026-06-18 22:07:25 - transformer - INFO - Handled missing values. Logged fills: {'attendance': 6, 'mid1': 13}
+2026-06-18 22:07:25 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-18 22:07:25 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-18 22:07:25 - transformer - INFO - Transformation complete. Data Quality Score: 95.25%
+2026-06-18 22:07:25 - run_etl - INFO - Transformation step completed successfully.
+2026-06-18 22:07:25 - loader - INFO - Initializing database schema...
+2026-06-18 22:07:26 - loader - INFO - Database schema initialized successfully.
+2026-06-18 22:07:26 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-18 22:07:26 - loader - INFO - Loaded 500 records into the database.
+2026-06-18 22:07:26 - loader - INFO - ETL run metadata logged in database.
+2026-06-18 22:07:26 - run_etl - INFO - Loading step completed successfully.
+2026-06-18 22:07:26 - run_etl - INFO - Generating report files...
+2026-06-18 22:07:26 - viz - INFO - Generating summary visualization at reports\summary.png...
+2026-06-18 22:07:28 - viz - INFO - Summary chart saved successfully at reports\summary.png
+2026-06-18 22:07:28 - run_etl - INFO - HTML Report compiled successfully.
+2026-06-18 22:07:28 - azure_loader - WARNING - Azure connection string missing. Defaulting to Mock Mode.
+2026-06-18 22:07:28 - azure_loader - INFO - [MOCK AZURE] Uploading 'data/student_data.csv' to container 'student-analytics' as 'raw_student_data.csv'...
+2026-06-18 22:07:28 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/raw_student_data.csv)
+2026-06-18 22:07:28 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\report.html' to container 'student-analytics' as 'reports/report.html'...
+2026-06-18 22:07:28 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/report.html)
+2026-06-18 22:07:28 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\summary.png' to container 'student-analytics' as 'reports/summary.png'...
+2026-06-18 22:07:28 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/summary.png)
+2026-06-18 22:07:28 - run_etl - INFO - Azure Upload step completed successfully.
+2026-06-18 22:07:28 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-18 22:07:28 - emailer - INFO - Preparing email notification...
+2026-06-18 22:07:28 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-18 22:07:28 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-18 22:07:28 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-18 22:07:28 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-18 22:07:28 - run_etl - INFO - Email Report step completed successfully.
+2026-06-18 22:07:28 - run_etl - INFO - =========================================
+2026-06-18 22:07:28 - run_etl - INFO - ETL Pipeline Execution Completed Status:
+2026-06-18 22:07:28 - run_etl - INFO - Extract: Success
+2026-06-18 22:07:28 - run_etl - INFO - Transform: Success
+2026-06-18 22:07:28 - run_etl - INFO - Load: Success
+2026-06-18 22:07:28 - run_etl - INFO - Azure Upload: Success
+2026-06-18 22:07:28 - run_etl - INFO - Email Report: Success
+2026-06-18 22:07:28 - run_etl - INFO - =========================================
+2026-06-18 22:15:24 - run_etl - INFO - =========================================
+2026-06-18 22:15:24 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-18 22:15:24 - run_etl - INFO - =========================================
+2026-06-18 22:15:24 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-18 22:15:24 - extractor - INFO - Extracted 505 records from CSV.
+2026-06-18 22:15:24 - run_etl - INFO - Extraction step completed successfully.
+2026-06-18 22:15:24 - transformer - INFO - Starting data transformation pipeline...
+2026-06-18 22:15:24 - transformer - INFO - Converted column names to lowercase.
+2026-06-18 22:15:24 - transformer - INFO - Removed 5 duplicate records.
+2026-06-18 22:15:24 - transformer - INFO - Handled missing values. Logged fills: {'attendance': 6, 'mid1': 13}
+2026-06-18 22:15:24 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-18 22:15:24 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-18 22:15:24 - transformer - INFO - Transformation complete. Data Quality Score: 95.25%
+2026-06-18 22:15:24 - run_etl - INFO - Transformation step completed successfully.
+2026-06-18 22:15:24 - loader - INFO - Initializing database schema...
+2026-06-18 22:15:24 - loader - INFO - Database schema initialized successfully.
+2026-06-18 22:15:24 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-18 22:15:24 - loader - INFO - Loaded 500 records into the database.
+2026-06-18 22:15:24 - loader - INFO - ETL run metadata logged in database.
+2026-06-18 22:15:24 - run_etl - INFO - Loading step completed successfully.
+2026-06-18 22:15:24 - run_etl - INFO - Generating report files...
+2026-06-18 22:15:24 - viz - INFO - Generating summary visualization at reports\summary.png...
+2026-06-18 22:15:27 - viz - INFO - Summary chart saved successfully at reports\summary.png
+2026-06-18 22:15:28 - run_etl - INFO - HTML Report compiled successfully.
+2026-06-18 22:15:28 - azure_loader - WARNING - Azure connection string missing. Defaulting to Mock Mode.
+2026-06-18 22:15:28 - azure_loader - INFO - [MOCK AZURE] Uploading 'data/student_data.csv' to container 'student-analytics' as 'raw_student_data.csv'...
+2026-06-18 22:15:28 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/raw_student_data.csv)
+2026-06-18 22:15:28 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\report.html' to container 'student-analytics' as 'reports/report.html'...
+2026-06-18 22:15:28 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/report.html)
+2026-06-18 22:15:28 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\summary.png' to container 'student-analytics' as 'reports/summary.png'...
+2026-06-18 22:15:28 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/summary.png)
+2026-06-18 22:15:28 - run_etl - INFO - Azure Upload step completed successfully.
+2026-06-18 22:15:28 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-18 22:15:28 - emailer - INFO - Preparing email notification...
+2026-06-18 22:15:28 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-18 22:15:28 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-18 22:15:28 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-18 22:15:28 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-18 22:15:28 - run_etl - INFO - Email Report step completed successfully.
+2026-06-18 22:15:28 - run_etl - INFO - =========================================
+2026-06-18 22:15:28 - run_etl - INFO - ETL Pipeline Execution Completed Status:
+2026-06-18 22:15:28 - run_etl - INFO - Extract: Success
+2026-06-18 22:15:28 - run_etl - INFO - Transform: Success
+2026-06-18 22:15:28 - run_etl - INFO - Load: Success
+2026-06-18 22:15:28 - run_etl - INFO - Azure Upload: Success
+2026-06-18 22:15:28 - run_etl - INFO - Email Report: Success
+2026-06-18 22:15:28 - run_etl - INFO - =========================================
+2026-06-18 22:20:46 - run_etl - INFO - =========================================
+2026-06-18 22:20:46 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-18 22:20:46 - run_etl - INFO - =========================================
+2026-06-18 22:20:46 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-18 22:20:46 - extractor - INFO - Extracted 500 records from CSV.
+2026-06-18 22:20:46 - run_etl - INFO - Extraction step completed successfully.
+2026-06-18 22:20:46 - transformer - INFO - Starting data transformation pipeline...
+2026-06-18 22:20:46 - transformer - INFO - Converted column names to lowercase.
+2026-06-18 22:20:46 - transformer - INFO - Removed 0 duplicate records.
+2026-06-18 22:20:46 - transformer - INFO - Handled missing values. Logged fills: {}
+2026-06-18 22:20:46 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-18 22:20:46 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-18 22:20:46 - transformer - INFO - Transformation complete. Data Quality Score: 100.0%
+2026-06-18 22:20:46 - run_etl - INFO - Transformation step completed successfully.
+2026-06-18 22:20:46 - loader - INFO - Initializing database schema...
+2026-06-18 22:20:46 - loader - INFO - Database schema initialized successfully.
+2026-06-18 22:20:46 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-18 22:20:46 - loader - INFO - Loaded 500 records into the database.
+2026-06-18 22:20:46 - loader - INFO - ETL run metadata logged in database.
+2026-06-18 22:20:46 - run_etl - INFO - Loading step completed successfully.
+2026-06-18 22:20:46 - run_etl - INFO - Generating report files...
+2026-06-18 22:20:46 - viz - INFO - Generating summary visualization at reports\summary.png...
+2026-06-18 22:20:50 - viz - INFO - Summary chart saved successfully at reports\summary.png
+2026-06-18 22:20:50 - run_etl - INFO - HTML Report compiled successfully.
+2026-06-18 22:20:50 - azure_loader - WARNING - Azure connection string missing. Defaulting to Mock Mode.
+2026-06-18 22:20:50 - azure_loader - INFO - [MOCK AZURE] Uploading 'data/student_data.csv' to container 'student-analytics' as 'raw_student_data.csv'...
+2026-06-18 22:20:50 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/raw_student_data.csv)
+2026-06-18 22:20:50 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\report.html' to container 'student-analytics' as 'reports/report.html'...
+2026-06-18 22:20:50 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/report.html)
+2026-06-18 22:20:50 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\summary.png' to container 'student-analytics' as 'reports/summary.png'...
+2026-06-18 22:20:50 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/summary.png)
+2026-06-18 22:20:50 - run_etl - INFO - Azure Upload step completed successfully.
+2026-06-18 22:20:50 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-18 22:20:50 - emailer - INFO - Preparing email notification...
+2026-06-18 22:20:50 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-18 22:20:50 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-18 22:20:50 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-18 22:20:51 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-18 22:20:51 - run_etl - INFO - Email Report step completed successfully.
+2026-06-18 22:20:51 - run_etl - INFO - =========================================
+2026-06-18 22:20:51 - run_etl - INFO - ETL Pipeline Execution Completed Status:
+2026-06-18 22:20:51 - run_etl - INFO - Extract: Success
+2026-06-18 22:20:51 - run_etl - INFO - Transform: Success
+2026-06-18 22:20:51 - run_etl - INFO - Load: Success
+2026-06-18 22:20:51 - run_etl - INFO - Azure Upload: Success
+2026-06-18 22:20:51 - run_etl - INFO - Email Report: Success
+2026-06-18 22:20:51 - run_etl - INFO - =========================================
+2026-06-18 22:24:39 - run_etl - INFO - =========================================
+2026-06-18 22:24:39 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-18 22:24:39 - run_etl - INFO - =========================================
+2026-06-18 22:24:39 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-18 22:24:39 - extractor - INFO - Extracted 500 records from CSV.
+2026-06-18 22:24:39 - run_etl - INFO - Extraction step completed successfully.
+2026-06-18 22:24:39 - transformer - INFO - Starting data transformation pipeline...
+2026-06-18 22:24:39 - transformer - INFO - Converted column names to lowercase.
+2026-06-18 22:24:39 - transformer - INFO - Removed 0 duplicate records.
+2026-06-18 22:24:39 - transformer - INFO - Handled missing values. Logged fills: {}
+2026-06-18 22:24:39 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-18 22:24:39 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-18 22:24:39 - transformer - INFO - Transformation complete. Data Quality Score: 100.0%
+2026-06-18 22:24:39 - run_etl - INFO - Transformation step completed successfully.
+2026-06-18 22:24:39 - loader - INFO - Initializing database schema...
+2026-06-18 22:24:39 - loader - INFO - Database schema initialized successfully.
+2026-06-18 22:24:39 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-18 22:24:39 - loader - INFO - Loaded 500 records into the database.
+2026-06-18 22:24:39 - loader - INFO - ETL run metadata logged in database.
+2026-06-18 22:24:39 - run_etl - INFO - Loading step completed successfully.
+2026-06-18 22:24:39 - run_etl - INFO - Generating report files...
+2026-06-18 22:24:39 - viz - INFO - Generating summary visualization at reports\summary.png...
+2026-06-18 22:24:43 - viz - INFO - Summary chart saved successfully at reports\summary.png
+2026-06-18 22:24:43 - run_etl - INFO - HTML Report compiled successfully.
+2026-06-18 22:24:43 - azure_loader - WARNING - Azure connection string missing. Defaulting to Mock Mode.
+2026-06-18 22:24:43 - azure_loader - INFO - [MOCK AZURE] Uploading 'data/student_data.csv' to container 'student-analytics' as 'raw_student_data.csv'...
+2026-06-18 22:24:43 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/raw_student_data.csv)
+2026-06-18 22:24:43 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\report.html' to container 'student-analytics' as 'reports/report.html'...
+2026-06-18 22:24:43 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/report.html)
+2026-06-18 22:24:43 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\summary.png' to container 'student-analytics' as 'reports/summary.png'...
+2026-06-18 22:24:43 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/summary.png)
+2026-06-18 22:24:43 - run_etl - INFO - Azure Upload step completed successfully.
+2026-06-18 22:24:43 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-18 22:24:43 - emailer - INFO - Preparing email notification...
+2026-06-18 22:24:43 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-18 22:24:43 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-18 22:24:43 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-18 22:24:43 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-18 22:24:43 - run_etl - INFO - Email Report step completed successfully.
+2026-06-18 22:24:43 - run_etl - INFO - =========================================
+2026-06-18 22:24:43 - run_etl - INFO - ETL Pipeline Execution Completed Status:
+2026-06-18 22:24:43 - run_etl - INFO - Extract: Success
+2026-06-18 22:24:43 - run_etl - INFO - Transform: Success
+2026-06-18 22:24:43 - run_etl - INFO - Load: Success
+2026-06-18 22:24:44 - run_etl - INFO - Azure Upload: Success
+2026-06-18 22:24:44 - run_etl - INFO - Email Report: Success
+2026-06-18 22:24:44 - run_etl - INFO - =========================================
+2026-06-18 22:25:20 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-18 22:25:22 - emailer - INFO - Preparing email notification...
+2026-06-18 22:25:22 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-18 22:25:22 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-18 22:25:22 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-18 22:25:22 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-18 22:31:45 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-18 22:31:45 - emailer - INFO - Preparing email notification...
+2026-06-18 22:31:45 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-18 22:31:45 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-18 22:31:45 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-18 22:31:45 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-18 22:37:07 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-18 22:37:07 - emailer - INFO - Preparing email notification...
+2026-06-18 22:37:07 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-18 22:37:07 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-18 22:37:07 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-18 22:37:07 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-18 22:42:03 - run_etl - INFO - =========================================
+2026-06-18 22:42:03 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-18 22:42:03 - run_etl - INFO - =========================================
+2026-06-18 22:42:03 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-18 22:42:03 - extractor - INFO - Extracted 500 records from CSV.
+2026-06-18 22:42:03 - run_etl - INFO - Extraction step completed successfully.
+2026-06-18 22:42:03 - transformer - INFO - Starting data transformation pipeline...
+2026-06-18 22:42:03 - transformer - INFO - Converted column names to lowercase.
+2026-06-18 22:42:03 - transformer - INFO - Removed 0 duplicate records.
+2026-06-18 22:42:04 - transformer - INFO - Handled missing values. Logged fills: {}
+2026-06-18 22:42:04 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-18 22:42:04 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-18 22:42:04 - transformer - INFO - Transformation complete. Data Quality Score: 100.0%
+2026-06-18 22:42:04 - run_etl - INFO - Transformation step completed successfully.
+2026-06-18 22:42:04 - loader - INFO - Initializing database schema...
+2026-06-18 22:42:04 - loader - INFO - Database schema initialized successfully.
+2026-06-18 22:42:04 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-18 22:42:04 - loader - INFO - Loaded 500 records into the database.
+2026-06-18 22:42:04 - loader - INFO - ETL run metadata logged in database.
+2026-06-18 22:42:04 - run_etl - INFO - Loading step completed successfully.
+2026-06-18 22:42:04 - run_etl - INFO - Generating report files...
+2026-06-18 22:42:04 - viz - INFO - Generating summary visualization at reports\summary.png...
+2026-06-18 22:42:09 - viz - INFO - Summary chart saved successfully at reports\summary.png
+2026-06-18 22:42:09 - run_etl - INFO - HTML Report compiled successfully.
+2026-06-18 22:42:09 - azure_loader - WARNING - Azure connection string missing. Defaulting to Mock Mode.
+2026-06-18 22:42:09 - azure_loader - INFO - [MOCK AZURE] Uploading 'data/student_data.csv' to container 'student-analytics' as 'raw_student_data.csv'...
+2026-06-18 22:42:09 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/raw_student_data.csv)
+2026-06-18 22:42:09 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\report.html' to container 'student-analytics' as 'reports/report.html'...
+2026-06-18 22:42:09 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/report.html)
+2026-06-18 22:42:09 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\summary.png' to container 'student-analytics' as 'reports/summary.png'...
+2026-06-18 22:42:09 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/summary.png)
+2026-06-18 22:42:09 - run_etl - INFO - Azure Upload step completed successfully.
+2026-06-18 22:42:09 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-18 22:42:09 - emailer - INFO - Preparing email notification...
+2026-06-18 22:42:09 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-18 22:42:09 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-18 22:42:09 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-18 22:42:09 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-18 22:42:09 - run_etl - INFO - Email Report step completed successfully.
+2026-06-18 22:42:09 - run_etl - INFO - =========================================
+2026-06-18 22:42:09 - run_etl - INFO - ETL Pipeline Execution Completed Status:
+2026-06-18 22:42:09 - run_etl - INFO - Extract: Success
+2026-06-18 22:42:09 - run_etl - INFO - Transform: Success
+2026-06-18 22:42:09 - run_etl - INFO - Load: Success
+2026-06-18 22:42:09 - run_etl - INFO - Azure Upload: Success
+2026-06-18 22:42:09 - run_etl - INFO - Email Report: Success
+2026-06-18 22:42:09 - run_etl - INFO - =========================================
+2026-06-18 22:47:54 - run_etl - INFO - =========================================
+2026-06-18 22:47:54 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-18 22:47:54 - run_etl - INFO - =========================================
+2026-06-18 22:47:54 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-18 22:47:54 - extractor - INFO - Extracted 649 records from CSV.
+2026-06-18 22:47:54 - run_etl - INFO - Extraction step completed successfully.
+2026-06-18 22:47:54 - transformer - INFO - Starting data transformation pipeline...
+2026-06-18 22:47:54 - transformer - INFO - Converted column names to lowercase.
+2026-06-18 22:47:55 - transformer - INFO - Removed 0 duplicate records.
+2026-06-18 22:47:55 - transformer - INFO - Handled missing values. Logged fills: {}
+2026-06-18 22:47:55 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-18 22:47:55 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-18 22:47:55 - transformer - INFO - Transformation complete. Data Quality Score: 100.0%
+2026-06-18 22:47:55 - run_etl - INFO - Transformation step completed successfully.
+2026-06-18 22:47:55 - loader - INFO - Initializing database schema...
+2026-06-18 22:47:55 - loader - INFO - Database schema initialized successfully.
+2026-06-18 22:47:55 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-18 22:47:55 - loader - INFO - Loaded 649 records into the database.
+2026-06-18 22:47:55 - loader - INFO - ETL run metadata logged in database.
+2026-06-18 22:47:55 - run_etl - INFO - Loading step completed successfully.
+2026-06-18 22:47:55 - run_etl - INFO - Generating report files...
+2026-06-18 22:47:55 - viz - INFO - Generating summary visualization at reports\summary.png...
+2026-06-18 22:47:58 - viz - INFO - Summary chart saved successfully at reports\summary.png
+2026-06-18 22:47:59 - run_etl - INFO - HTML Report compiled successfully.
+2026-06-18 22:47:59 - azure_loader - WARNING - Azure connection string missing. Defaulting to Mock Mode.
+2026-06-18 22:47:59 - azure_loader - INFO - [MOCK AZURE] Uploading 'data/student_data.csv' to container 'student-analytics' as 'raw_student_data.csv'...
+2026-06-18 22:47:59 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/raw_student_data.csv)
+2026-06-18 22:47:59 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\report.html' to container 'student-analytics' as 'reports/report.html'...
+2026-06-18 22:47:59 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/report.html)
+2026-06-18 22:47:59 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\summary.png' to container 'student-analytics' as 'reports/summary.png'...
+2026-06-18 22:47:59 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/summary.png)
+2026-06-18 22:47:59 - run_etl - INFO - Azure Upload step completed successfully.
+2026-06-18 22:47:59 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-18 22:47:59 - emailer - INFO - Preparing email notification...
+2026-06-18 22:47:59 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-18 22:47:59 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-18 22:47:59 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-18 22:47:59 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-18 22:47:59 - run_etl - INFO - Email Report step completed successfully.
+2026-06-18 22:47:59 - run_etl - INFO - =========================================
+2026-06-18 22:47:59 - run_etl - INFO - ETL Pipeline Execution Completed Status:
+2026-06-18 22:47:59 - run_etl - INFO - Extract: Success
+2026-06-18 22:47:59 - run_etl - INFO - Transform: Success
+2026-06-18 22:47:59 - run_etl - INFO - Load: Success
+2026-06-18 22:47:59 - run_etl - INFO - Azure Upload: Success
+2026-06-18 22:47:59 - run_etl - INFO - Email Report: Success
+2026-06-18 22:47:59 - run_etl - INFO - =========================================
+2026-06-18 22:48:15 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-18 22:48:15 - emailer - INFO - Preparing email notification...
+2026-06-18 22:48:15 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-18 22:48:15 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-18 22:48:15 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-18 22:48:15 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-19 19:43:48 - run_etl - INFO - =========================================
+2026-06-19 19:43:48 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-19 19:43:48 - run_etl - INFO - =========================================
+2026-06-19 19:43:48 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-19 19:43:48 - extractor - INFO - Extracted 649 records from CSV.
+2026-06-19 19:43:48 - run_etl - INFO - Extraction step completed successfully.
+2026-06-19 19:43:48 - transformer - INFO - Starting data transformation pipeline...
+2026-06-19 19:43:48 - transformer - INFO - Converted column names to lowercase.
+2026-06-19 19:43:48 - transformer - INFO - Removed 0 duplicate records.
+2026-06-19 19:43:48 - transformer - INFO - Handled missing values. Logged fills: {}
+2026-06-19 19:43:48 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-19 19:43:48 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-19 19:43:48 - transformer - INFO - Transformation complete. Data Quality Score: 100.0%
+2026-06-19 19:43:48 - run_etl - INFO - Transformation step completed successfully.
+2026-06-19 19:43:48 - loader - INFO - Initializing database schema...
+2026-06-19 19:43:48 - loader - INFO - Database schema initialized successfully.
+2026-06-19 19:43:48 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-19 19:43:48 - loader - INFO - Loaded 649 records into the database.
+2026-06-19 19:43:48 - loader - INFO - ETL run metadata logged in database.
+2026-06-19 19:43:48 - run_etl - INFO - Loading step completed successfully.
+2026-06-19 19:43:48 - run_etl - INFO - Generating report files...
+2026-06-19 19:43:48 - viz - INFO - Generating summary visualization at reports\summary.png...
+2026-06-19 19:43:51 - viz - INFO - Summary chart saved successfully at reports\summary.png
+2026-06-19 19:43:51 - run_etl - INFO - HTML Report compiled successfully.
+2026-06-19 19:43:51 - azure_loader - WARNING - Azure connection string missing. Defaulting to Mock Mode.
+2026-06-19 19:43:51 - azure_loader - INFO - [MOCK AZURE] Uploading 'data/student_data.csv' to container 'student-analytics' as 'raw_student_data.csv'...
+2026-06-19 19:43:51 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/raw_student_data.csv)
+2026-06-19 19:43:51 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\report.html' to container 'student-analytics' as 'reports/report.html'...
+2026-06-19 19:43:51 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/report.html)
+2026-06-19 19:43:51 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\summary.png' to container 'student-analytics' as 'reports/summary.png'...
+2026-06-19 19:43:51 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/summary.png)
+2026-06-19 19:43:51 - run_etl - INFO - Azure Upload step completed successfully.
+2026-06-19 19:43:51 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-19 19:43:51 - emailer - INFO - Preparing email notification...
+2026-06-19 19:43:51 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-19 19:43:51 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-19 19:43:51 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-19 19:43:51 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-19 19:43:51 - run_etl - INFO - Email Report step completed successfully.
+2026-06-19 19:43:51 - run_etl - INFO - =========================================
+2026-06-19 19:43:51 - run_etl - INFO - ETL Pipeline Execution Completed Status:
+2026-06-19 19:43:51 - run_etl - INFO - Extract: Success
+2026-06-19 19:43:51 - run_etl - INFO - Transform: Success
+2026-06-19 19:43:51 - run_etl - INFO - Load: Success
+2026-06-19 19:43:51 - run_etl - INFO - Azure Upload: Success
+2026-06-19 19:43:51 - run_etl - INFO - Email Report: Success
+2026-06-19 19:43:51 - run_etl - INFO - =========================================
+2026-06-19 19:44:15 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-19 19:44:15 - emailer - INFO - Preparing email notification...
+2026-06-19 19:44:15 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-19 19:44:15 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-19 19:44:15 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-19 19:44:15 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-19 20:01:44 - run_etl - INFO - =========================================
+2026-06-19 20:01:44 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-19 20:01:44 - run_etl - INFO - =========================================
+2026-06-19 20:01:44 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-19 20:01:44 - extractor - INFO - Extracted 649 records from CSV.
+2026-06-19 20:01:44 - run_etl - INFO - Extraction step completed successfully.
+2026-06-19 20:01:44 - transformer - INFO - Starting data transformation pipeline...
+2026-06-19 20:01:44 - transformer - INFO - Converted column names to lowercase.
+2026-06-19 20:01:44 - transformer - INFO - Removed 0 duplicate records.
+2026-06-19 20:01:44 - transformer - INFO - Handled missing values. Logged fills: {}
+2026-06-19 20:01:44 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-19 20:01:44 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-19 20:01:44 - transformer - INFO - Transformation complete. Data Quality Score: 100.0%
+2026-06-19 20:01:44 - run_etl - INFO - Transformation step completed successfully.
+2026-06-19 20:01:45 - loader - INFO - Initializing database schema...
+2026-06-19 20:01:45 - loader - INFO - Database schema initialized successfully.
+2026-06-19 20:01:45 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-19 20:01:45 - loader - INFO - Loaded 649 records into the database.
+2026-06-19 20:01:45 - loader - INFO - ETL run metadata logged in database.
+2026-06-19 20:01:45 - run_etl - INFO - Loading step completed successfully.
+2026-06-19 20:01:45 - run_etl - INFO - Generating report files...
+2026-06-19 20:01:45 - viz - INFO - Generating summary visualization at reports\summary.png...
+2026-06-19 20:01:48 - viz - INFO - Summary chart saved successfully at reports\summary.png
+2026-06-19 20:01:48 - run_etl - INFO - HTML Report compiled successfully.
+2026-06-19 20:01:48 - azure_loader - WARNING - Azure connection string missing. Defaulting to Mock Mode.
+2026-06-19 20:01:48 - azure_loader - INFO - [MOCK AZURE] Uploading 'data/student_data.csv' to container 'student-analytics' as 'raw_student_data.csv'...
+2026-06-19 20:01:48 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/raw_student_data.csv)
+2026-06-19 20:01:48 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\report.html' to container 'student-analytics' as 'reports/report.html'...
+2026-06-19 20:01:48 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/report.html)
+2026-06-19 20:01:48 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\summary.png' to container 'student-analytics' as 'reports/summary.png'...
+2026-06-19 20:01:48 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/summary.png)
+2026-06-19 20:01:48 - run_etl - INFO - Azure Upload step completed successfully.
+2026-06-19 20:01:48 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-19 20:01:48 - emailer - INFO - Preparing email notification...
+2026-06-19 20:01:48 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-19 20:01:48 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-19 20:01:48 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-19 20:01:48 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-19 20:01:48 - run_etl - INFO - Email Report step completed successfully.
+2026-06-19 20:01:48 - run_etl - INFO - =========================================
+2026-06-19 20:01:48 - run_etl - INFO - ETL Pipeline Execution Completed Status:
+2026-06-19 20:01:48 - run_etl - INFO - Extract: Success
+2026-06-19 20:01:48 - run_etl - INFO - Transform: Success
+2026-06-19 20:01:48 - run_etl - INFO - Load: Success
+2026-06-19 20:01:48 - run_etl - INFO - Azure Upload: Success
+2026-06-19 20:01:48 - run_etl - INFO - Email Report: Success
+2026-06-19 20:01:48 - run_etl - INFO - =========================================
+2026-06-19 20:03:50 - run_etl - INFO - =========================================
+2026-06-19 20:03:50 - run_etl - INFO - Starting Student Performance ETL Pipeline
+2026-06-19 20:03:50 - run_etl - INFO - =========================================
+2026-06-19 20:03:50 - extractor - INFO - Starting extraction from CSV: data/student_data.csv
+2026-06-19 20:03:50 - extractor - INFO - Extracted 649 records from CSV.
+2026-06-19 20:03:50 - run_etl - INFO - Extraction step completed successfully.
+2026-06-19 20:03:50 - transformer - INFO - Starting data transformation pipeline...
+2026-06-19 20:03:50 - transformer - INFO - Converted column names to lowercase.
+2026-06-19 20:03:50 - transformer - INFO - Removed 0 duplicate records.
+2026-06-19 20:03:50 - transformer - INFO - Handled missing values. Logged fills: {}
+2026-06-19 20:03:50 - transformer - INFO - Formatted date column to YYYY-MM-DD.
+2026-06-19 20:03:50 - transformer - INFO - Calculating average marks and assigning grades...
+2026-06-19 20:03:50 - transformer - INFO - Transformation complete. Data Quality Score: 100.0%
+2026-06-19 20:03:50 - run_etl - INFO - Transformation step completed successfully.
+2026-06-19 20:03:50 - loader - INFO - Initializing database schema...
+2026-06-19 20:03:50 - loader - INFO - Database schema initialized successfully.
+2026-06-19 20:03:50 - loader - INFO - Writing transformed data to 'students' table...
+2026-06-19 20:03:50 - loader - INFO - Loaded 649 records into the database.
+2026-06-19 20:03:50 - loader - INFO - ETL run metadata logged in database.
+2026-06-19 20:03:50 - run_etl - INFO - Loading step completed successfully.
+2026-06-19 20:03:50 - run_etl - INFO - Generating report files...
+2026-06-19 20:03:50 - viz - INFO - Generating summary visualization at reports\summary.png...
+2026-06-19 20:03:54 - viz - INFO - Summary chart saved successfully at reports\summary.png
+2026-06-19 20:03:54 - run_etl - INFO - HTML Report compiled successfully.
+2026-06-19 20:03:54 - azure_loader - WARNING - Azure connection string missing. Defaulting to Mock Mode.
+2026-06-19 20:03:54 - azure_loader - INFO - [MOCK AZURE] Uploading 'data/student_data.csv' to container 'student-analytics' as 'raw_student_data.csv'...
+2026-06-19 20:03:54 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/raw_student_data.csv)
+2026-06-19 20:03:54 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\report.html' to container 'student-analytics' as 'reports/report.html'...
+2026-06-19 20:03:54 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/report.html)
+2026-06-19 20:03:54 - azure_loader - INFO - [MOCK AZURE] Uploading 'reports\summary.png' to container 'student-analytics' as 'reports/summary.png'...
+2026-06-19 20:03:54 - azure_loader - INFO - [MOCK AZURE] Upload successful! (Simulated URL: https://student-analytics.blob.core.windows.net/reports/summary.png)
+2026-06-19 20:03:54 - run_etl - INFO - Azure Upload step completed successfully.
+2026-06-19 20:03:54 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-19 20:03:54 - emailer - INFO - Preparing email notification...
+2026-06-19 20:03:54 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-19 20:03:54 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-19 20:03:54 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-19 20:03:54 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
+2026-06-19 20:03:54 - run_etl - INFO - Email Report step completed successfully.
+2026-06-19 20:03:54 - run_etl - INFO - =========================================
+2026-06-19 20:03:54 - run_etl - INFO - ETL Pipeline Execution Completed Status:
+2026-06-19 20:03:54 - run_etl - INFO - Extract: Success
+2026-06-19 20:03:54 - run_etl - INFO - Transform: Success
+2026-06-19 20:03:54 - run_etl - INFO - Load: Success
+2026-06-19 20:03:54 - run_etl - INFO - Azure Upload: Success
+2026-06-19 20:03:54 - run_etl - INFO - Email Report: Success
+2026-06-19 20:03:54 - run_etl - INFO - =========================================
+2026-06-19 20:04:06 - emailer - WARNING - Email credentials not configured in .env. Enforcing Mock Mode.
+2026-06-19 20:04:06 - emailer - INFO - Preparing email notification...
+2026-06-19 20:04:06 - emailer - INFO - [MOCK EMAIL] Simulating email transmission...
+2026-06-19 20:04:06 - emailer - INFO - [MOCK EMAIL] From: sender@example.com | To: receiver@example.com
+2026-06-19 20:04:06 - emailer - INFO - [MOCK EMAIL] Subject: Student Performance ETL Status - SUCCESS
+2026-06-19 20:04:06 - emailer - INFO - [MOCK EMAIL] Saved simulation HTML report to reports\mock_email.html for visual inspection.
